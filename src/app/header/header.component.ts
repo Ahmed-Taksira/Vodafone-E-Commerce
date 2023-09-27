@@ -15,7 +15,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.authService.user.subscribe((type) => {
       type == '' ? (this.isAuth = false) : (this.isAuth = true);
-      console.log(this.isAuth);
     });
   }
 
