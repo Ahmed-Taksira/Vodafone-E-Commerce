@@ -1,0 +1,15 @@
+<div class="center">
+  <div
+    *ngIf="isLoading"
+    class="spinner-border m-5"
+    role="status"
+    style="width: 6rem; height: 6rem"
+  ></div>
+</div>
+
+<div *ngIf="!isLoading">
+  <app-category-card
+    *ngFor="let cat of categories"
+    [category]="cat"
+  ></app-category-card>
+</div>

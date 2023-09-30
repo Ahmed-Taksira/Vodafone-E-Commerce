@@ -1,0 +1,14 @@
+<div class="center">
+  <div
+    *ngIf="isLoading"
+    class="spinner-border m-5"
+    role="status"
+    style="width: 6rem; height: 6rem"
+  ></div>
+</div>
+
+<div *ngIf="!isLoading" class="row" style="margin-top: 20px">
+  <div *ngFor="let prod of products" class="col-4" style="margin-top: 20px">
+    <app-product-card [product]="prod"></app-product-card>
+  </div>
+</div>

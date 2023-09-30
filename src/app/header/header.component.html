@@ -1,12 +1,33 @@
-<nav class="navbar navbar-default">
+<nav
+  class="navbar navbar-default"
+  style="background-color: black; z-index: 1; position: sticky; top: 0"
+>
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand">E-commerce</a>
+      <a
+        class="navbar-brand"
+        style="color: white; font-family: fantasy; font-size: x-large"
+        routerLink="/dashboard"
+        >{{ "projectTitle" | translate }}</a
+      >
     </div>
-    <ul class="nav navbar-nav navbar-right" *ngIf="isAuth">
-      <button class="btn btn-outline-danger" (click)="onLogOut()">
-        Log Out
-      </button>
-    </ul>
+    <div class="nav navbar-nav navbar-right">
+      <div class="row">
+        <div class="col-4">
+          <button class="btn btn-outline-light" (click)="switchLanguage()">
+            {{ lang | uppercase }}
+          </button>
+        </div>
+        <div class="col-8">
+          <button
+            class="btn btn-outline-light"
+            *ngIf="isAuth"
+            (click)="onLogOut()"
+          >
+            {{ "logOut" | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </nav>

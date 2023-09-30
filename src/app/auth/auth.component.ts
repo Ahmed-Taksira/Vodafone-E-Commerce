@@ -16,6 +16,7 @@ export class AuthComponent implements OnInit {
   onSubmit(form: NgForm) {
     this.authService.signIn(form.value.username, form.value.password);
     form.reset();
+    //checks
     this.router.navigate(['dashboard']);
   }
 }

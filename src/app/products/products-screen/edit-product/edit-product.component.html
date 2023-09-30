@@ -1,0 +1,84 @@
+<div class="container m-3">
+  <h2 *ngIf="productId"><i class="fas fa-edit"></i> Edit Product</h2>
+  <h2 *ngIf="!productId"><i class="fas fa-plus-square"></i> Add Product</h2>
+  <hr />
+  <form [formGroup]="form">
+    <div class="mb-3 center">
+      <img
+        [src]="imageUrl"
+        alt="Product Image"
+        class="img-thumbnail"
+        *ngIf="imageUrl"
+        style="width: 250px; height: 250px"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="image" class="form-label">Image URL</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="image"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="title"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="category" class="form-label">Category</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="category"
+        required
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="price" class="form-label">Price</label>
+      <input
+        type="number"
+        class="form-control"
+        formControlName="price"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea
+        class="form-control"
+        formControlName="description"
+        rows="4"
+        required
+      ></textarea>
+    </div>
+    <div class="row">
+      <div class="col-8">
+        <button
+          (click)="onSubmit()"
+          class="btn btn-outline-dark"
+          [disabled]="isLoading"
+        >
+          <span
+            *ngIf="isLoading"
+            class="spinner-border spinner-border-sm"
+            role="status"
+            aria-hidden="true"
+          ></span>
+          {{ isLoading ? "" : "Save" }}
+        </button>
+      </div>
+      <div *ngIf="isDone" class="col-4">
+        <p style="color: green">
+          Successfully {{ productId ? "Edited" : "Added" }} Product
+        </p>
+      </div>
+    </div>
+  </form>
+</div>
