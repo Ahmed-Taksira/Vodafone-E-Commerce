@@ -1,0 +1,18 @@
+{
+  "username": "Username",
+  "password": "Password",
+  "logIn": "Login",
+  "logOut": "Logout",
+  "projectTitle": "E-commerce",
+  "welcome": "Welcome",
+  "ُeditProduct": "Edit Product",
+  "addProduct": "Add Product",
+  "save": "Save",
+  "imageUrl": "Image Url",
+  "title": "Title",
+  "category": "Category",
+  "price": "Price",
+  "description": "Description",
+  "editSuccess": "Successfully Edited Product",
+  "addSuccess": "Successfully Added Product"
+}
