@@ -15,12 +15,14 @@ export class ProductsService {
 
   categories: string[] = [];
   chosenCategory: string = '';
+  categroySubject = new Subject<string>();
 
   getCategories() {
     return new Observable<string[]>((observer) => {
       this.http.get('https://fakestoreapi.com/products/categories/').subscribe(
         (res: string[]) => {
           this.categories = res;
+          this.categroySubject.next(null);
           observer.next(this.categories);
           observer.complete();
         },
@@ -32,18 +34,18 @@ export class ProductsService {
   }
 
   getProductsOfCategory(category: string) {
-    if (this.chosenCategory == category) {
-      return of(this.products.slice());
-    } else {
+    if (category !== this.chosenCategory) {
       this.http
         .get(`https://fakestoreapi.com/products/category/${category}`)
         .subscribe((res: Product[]) => {
           this.products = res;
-          this.chosenCategory = category;
           this.productsChanged.next(this.products.slice());
+          this.chosenCategory = category;
+          this.categroySubject.next(this.chosenCategory);
         });
-
-      return this.productsChanged.asObservable();
+    } else {
+      this.productsChanged.next(this.products.slice());
+      this.categroySubject.next(this.chosenCategory);
     }
   }
 
@@ -74,11 +76,11 @@ export class ProductsService {
 
   deleteProduct(id: number) {
     return new Observable<void>((observer) => {
-      this.products = this.products.filter((p) => p.id !== id);
-      this.productsChanged.next(this.products.slice());
       this.http
         .delete(`https://fakestoreapi.com/products/${id}`)
         .subscribe((_) => {
+          this.products = this.products.filter((p) => p.id !== id);
+          this.productsChanged.next(this.products.slice());
           observer.next();
           observer.complete();
         });

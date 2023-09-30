@@ -28,13 +28,12 @@ export class ProductsScreenComponent implements OnInit, OnDestroy {
     let category = this.route.snapshot.paramMap.get('category');
 
     this.isLoading = true;
-    this.productsSub = this.productsService
-      .getProductsOfCategory(category)
-      .subscribe((res) => {
-        this.products = res;
-        this.totalPages = Math.ceil(this.products.length / this.pageSize) - 1;
-        this.isLoading = false;
-      });
+    this.productsSub = this.productsService.productsChanged.subscribe((res) => {
+      this.products = res;
+      this.totalPages = Math.ceil(this.products.length / this.pageSize) - 1;
+      this.isLoading = false;
+    });
+    this.productsService.getProductsOfCategory(category);
   }
 
   range(start: number, end: number) {

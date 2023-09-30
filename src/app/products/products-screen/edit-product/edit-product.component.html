@@ -1,9 +1,8 @@
 <div class="container m-3">
-  <h2 *ngIf="productId">
-    <i class="fas fa-edit"></i> {{ "editProduct" | translate }}
-  </h2>
-  <h2 *ngIf="!productId">
-    <i class="fas fa-plus-circle"></i> {{ "addProduct" | translate }}
+  <h2>
+    <i *ngIf="productId" class="fas fa-edit"></i>
+    <i *ngIf="!productId" class="fas fa-plus-circle"></i>
+    {{ productId ? ("ُeditProduct" | translate) : ("addProduct" | translate) }}
   </h2>
   <hr />
   <form [formGroup]="form">
@@ -43,6 +42,7 @@
         class="form-control"
         formControlName="category"
         required
+        [disabled]="true"
       />
     </div>
 
@@ -84,7 +84,9 @@
       </div>
       <div *ngIf="isDone" class="col-4">
         <p style="color: green">
-          {{ productId ? "editSuccess" : ("addSuccess" | translate) }}
+          {{
+            productId ? ("editSuccess" | translate) : ("addSuccess" | translate)
+          }}
         </p>
       </div>
     </div>

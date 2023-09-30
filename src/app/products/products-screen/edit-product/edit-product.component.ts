@@ -30,7 +30,10 @@ export class EditProductComponent implements OnInit, OnDestroy {
     this.form = new FormGroup({
       image: new FormControl('', Validators.required),
       title: new FormControl('', Validators.required),
-      category: new FormControl('', Validators.required),
+      category: new FormControl(
+        { value: '', disabled: true },
+        Validators.required
+      ),
       price: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
     });
@@ -45,7 +48,12 @@ export class EditProductComponent implements OnInit, OnDestroy {
       this.product = this.productsService.getProductById(this.productId);
       this.imageUrl = this.product.image;
       this.setControls();
-    } else this.productId = null;
+    } else {
+      this.productId = null;
+      this.form
+        .get('category')
+        .setValue(this.route.snapshot.paramMap.get('category'));
+    }
   }
 
   setControls() {
