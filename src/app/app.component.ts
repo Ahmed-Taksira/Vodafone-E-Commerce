@@ -7,7 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./app.component.sass'],
 })
 export class AppComponent {
-  title = 'vodafone-e-commerce';
+  title = 'vodafone-e-commerce by Ahmed Taksira';
 
   constructor(private translateService: TranslateService) {
     this.translateService.onLangChange.subscribe((data) => {
