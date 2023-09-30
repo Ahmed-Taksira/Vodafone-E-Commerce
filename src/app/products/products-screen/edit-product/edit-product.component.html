@@ -2,7 +2,7 @@
   <h2>
     <i *ngIf="productId" class="fas fa-edit"></i>
     <i *ngIf="!productId" class="fas fa-plus-circle"></i>
-    {{ productId ? ("ُeditProduct" | translate) : ("addProduct" | translate) }}
+    {{ (productId ? "editProduct" : "addProduct") | translate }}
   </h2>
   <hr />
   <form [formGroup]="form">
@@ -84,9 +84,7 @@
       </div>
       <div *ngIf="isDone" class="col-4">
         <p style="color: green">
-          {{
-            productId ? ("editSuccess" | translate) : ("addSuccess" | translate)
-          }}
+          {{ (productId ? "editSuccess" : "addSuccess") | translate }}
         </p>
       </div>
     </div>
