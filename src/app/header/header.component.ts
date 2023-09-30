@@ -16,11 +16,13 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   isAuth: boolean;
+  isAdmin: boolean;
   lang: string = 'en';
 
   ngOnInit(): void {
     this.authService.user.subscribe((type) => {
       type == '' ? (this.isAuth = false) : (this.isAuth = true);
+      type == 'admin' ? (this.isAdmin = true) : (this.isAdmin = false);
     });
 
     this.translateService.setDefaultLang(this.lang);

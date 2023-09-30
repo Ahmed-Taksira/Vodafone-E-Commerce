@@ -10,12 +10,25 @@ export class ProductsService {
   constructor(private http: HttpClient) {}
 
   private products: Product[] = [];
+  private testproducts = {};
   productsChanged = new Subject<Product[]>();
 
+  categories: string[] = [];
   chosenCategory: string = '';
 
   getCategories() {
-    return this.http.get('https://fakestoreapi.com/products/categories/');
+    return new Observable<string[]>((observer) => {
+      this.http.get('https://fakestoreapi.com/products/categories/').subscribe(
+        (res: string[]) => {
+          this.categories = res;
+          observer.next(this.categories);
+          observer.complete();
+        },
+        (error) => {
+          observer.error(error);
+        }
+      );
+    });
   }
 
   getProductsOfCategory(category: string) {
@@ -61,17 +74,14 @@ export class ProductsService {
 
   deleteProduct(id: number) {
     return new Observable<void>((observer) => {
-      this.http.delete(`https://fakestoreapi.com/products/${id}`).subscribe(
-        (_) => {
-          this.products = this.products.filter((p) => p.id != id);
-          this.productsChanged.next(this.products.slice());
+      this.products = this.products.filter((p) => p.id !== id);
+      this.productsChanged.next(this.products.slice());
+      this.http
+        .delete(`https://fakestoreapi.com/products/${id}`)
+        .subscribe((_) => {
           observer.next();
           observer.complete();
-        },
-        (error) => {
-          observer.error(error);
-        }
-      );
+        });
     });
   }
 

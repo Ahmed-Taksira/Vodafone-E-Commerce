@@ -4,5 +4,15 @@
   "logIn": "Login",
   "logOut": "Logout",
   "projectTitle": "E-commerce",
-  "welcome": "Welcome"
+  "welcome": "Welcome",
+  "addProduct": "Add Product",
+  "ُeditProduct": "Edit Product",
+  "save": "Save",
+  "imageUrl": "Image Url",
+  "title": "Title",
+  "category": "Category",
+  "price": "Price",
+  "description": "Description",
+  "editSuccess": "Successfully Edited Product",
+  "addSuccess": "Successfully Added Product"
 }

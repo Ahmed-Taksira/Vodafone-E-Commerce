@@ -11,6 +11,11 @@
         >{{ "projectTitle" | translate }}</a
       >
     </div>
+    <div *ngIf="isAdmin" class="mx-auto">
+      <button class="btn btn-outline-light" routerLink="/dashboard/product/new">
+        {{ "addProduct" | translate }}
+      </button>
+    </div>
     <div class="nav navbar-nav navbar-right">
       <div class="row">
         <div class="col-4">

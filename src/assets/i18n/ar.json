@@ -4,5 +4,15 @@
   "logIn": "تسجيل الدخول",
   "logOut": "الخروج",
   "projectTitle": "التجارة الإلكترونية",
-  "welcome": "مرحباً"
+  "welcome": "مرحباً",
+  "addProduct": "أضف منتج",
+  "editProduct": "تحرير المنتج",
+  "save": "حفظ",
+  "imageUrl": "رابط الصورة",
+  "title": "عنوان",
+  "category": "فئة",
+  "price": "سعر",
+  "description": "وصف",
+  "editSuccess": "تم تحرير المنتج بنجاح",
+  "addSuccess": "تمت إضافة المنتج بنجاح"
 }

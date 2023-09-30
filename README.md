@@ -1,27 +1,33 @@
-# VodafoneECommerce
+# VodafoneE-Commerce
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.1.
+I wanted to note some of my implementations and faults.
 
-## Development server
+1- I implemented the project to only translate everything that I wrote, and not translate any kind of data fetched from outside the project, that's why you may notice that the products and categories will still be in english.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+2- In Edit/Add Product, I wanted the "Category" Form control to be a dropdown but for some reason angular material's and bootstrap's dropdowns were so buggy in my project that i had to remove them. So, at the end, it had to be a normal text input form control.
 
-## Code scaffolding
+3- Since this project does not include a database, I tried my best to mimic a db's functions using product-service.ts. I mimicked a a local db that could lazy load any function or data along with the optimistic developing approach. Everything related to data would be depicted correctly as long as you don't refresh the page, doing so will reset everything including the user's authentication.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Walkthrough of the project
 
-## Build
+1- There are 2 types of users, a user and an admin.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- The 2 accounts are: username: user, password: user AND username: admin, password: admin
 
-## Running unit tests
+2- User can only Sign In, View Categories, View Products, Change Pages' Language, and Log Out.
+3- Admin can do everything the user can do, also admin can Add Product, Edit Product, and Delete Product.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+4- I should note that in order to see the respective changes, you should not refresh the page and that since my "local db" only fetches products from the chosen category and not "all categories", any change will be seen only if U EXECUTE WHATEVER METHOD OF AN ADMIN ON A PRODUCT, THEN VIEWING THAT SAME CATEGORY AGAIN RIGHT AFTER IT. Because, as mentioned, everytime i fetch products, they are from a specific category.
 
-## Running end-to-end tests
+### Correct Scenario
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Step 1: Sign in as admin
+Step 2: Choose a category (let's say electronics)
+Step 3: Edit/Delete a product
+Step 4: Go back to categories screen either by pressing the browser's back button or pressing on the website's icon/title.
+Step 5: Choose the same category(electronics) to view the changes
 
-## Further help
+### Wrong Scenario
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Step 5: Choose a different category, where that would lead to erasing all the updates to the "electronics" category and fetching a new category.
+Step 6: Go back to "electronics", and see that all data has been reset.

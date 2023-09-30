@@ -16,6 +16,7 @@ import { ProductsScreenComponent } from './products/products-screen/products-scr
 import { CategoryCardComponent } from './products/categories-screen/category-card/category-card.component';
 import { ProductCardComponent } from './products/products-screen/product-card/product-card.component';
 import { EditProductComponent } from './products/products-screen/edit-product/edit-product.component';
+import { PaginatePipe } from './paginate.pipe';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { EditProductComponent } from './products/products-screen/edit-product/ed
     CategoryCardComponent,
     ProductCardComponent,
     EditProductComponent,
+    PaginatePipe,
   ],
   imports: [
     BrowserModule,

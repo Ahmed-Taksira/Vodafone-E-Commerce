@@ -27,7 +27,11 @@
             />
           </div>
           <div class="text-center" style="margin: 10px">
-            <button class="btn btn-outline-dark" type="submit">
+            <button
+              [disabled]="f.invalid"
+              class="btn btn-outline-dark"
+              type="submit"
+            >
               {{ "logIn" | translate }}
             </button>
           </div>

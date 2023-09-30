@@ -26,8 +26,6 @@ export class EditProductComponent implements OnInit, OnDestroy {
   isLoading: boolean = false;
   isDone: boolean = false;
 
-  categoryOptions: string[] = [];
-
   ngOnInit(): void {
     this.form = new FormGroup({
       image: new FormControl('', Validators.required),
@@ -40,10 +38,6 @@ export class EditProductComponent implements OnInit, OnDestroy {
     this.imageSub = this.form.get('image').valueChanges.subscribe((value) => {
       this.imageUrl = value;
     });
-
-    this.productsService
-      .getCategories()
-      .subscribe((res: string[]) => (this.categoryOptions = res));
 
     let tempId = this.route.snapshot.paramMap.get('id');
     if (tempId) {
